@@ -61,11 +61,9 @@ console.log(thisVar === anotherVar ? "this string" : "another string");
 
 // --
 
-const newObj = {v: 666};
 const arr = [3,"str",true, anyFunction];
 const regexp = /[a-z]/;
+
+const newObj = {v: 666};
 const thisString = `The value of newObj: ${newObj.v}`;
 console.log(thisString);
-
-// --
-
