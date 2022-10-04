@@ -4,11 +4,13 @@ const bar = false;
 console.log(typeof foo);
 console.log(typeof bar);
 
+const str = "plain old string";
+console.log(typeof str);
+
 const num = 3;
 console.log(typeof num);
 
-const str = "plain old string";
-console.log(typeof str);
+console.log(typeof Number);
 
 let x;
 console.log(typeof x);
@@ -40,4 +42,30 @@ const obj = {
 };
 console.log(typeof obj);
 
-console.log(typeof Number);
+// --
+
+function anyFunction(num){
+    let a = 5;
+    if(num > 6 ){
+        a++;
+    }
+    return a;
+}
+console.log(anyFunction(7));
+
+// --
+
+var thisVar = "this";
+var anotherVar = "not this";
+console.log(thisVar === anotherVar ? "this string" : "another string");
+
+// --
+
+const newObj = {v: 666};
+const arr = [3,"str",true, anyFunction];
+const regexp = /[a-z]/;
+const thisString = `The value of newObj: ${newObj.v}`;
+console.log(thisString);
+
+// --
+
