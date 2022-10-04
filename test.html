@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<script charset="UTF-8"></script>
+<link rel="stylesheet" href="stylesheet.css" media="all">
+<div>
+    <svg viewBox="0 0 40 40">
+    
+        <clipPath id="cut3">
+            <polyline points="3.4 10.7 16 5.5 8.8 14.2"/>
+        </clipPath>
+
+        <g clip-path="url(#cut2)">
+            <circle class="fill2" cx="35" cy="30" r="10"/>
+        </g>
+
+        <clipPath id="cut2">
+            <circle cx="30" cy="30" r="6"/>
+        </clipPath>
+
+        <circle class="fill" cx="20" cy="20" r="12" >
+            <animateTransform transform="translate(-10, -30) scale(3)" type="scale" from="1 1" to="1.1 1.1" begin="0.2s" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        
+        <circle class="fill2" cx="20" cy="20" r="10"/>
+
+        <circle class="fill" cx="20" cy="20" r="8"/>
+        
+        <circle class="fill2" cx="20" cy="20" r="4"/>
+        
+        <g clip-path="url(#cut3)">
+            <circle class="fill2" cx="8" cy="8" r="6"/>
+        </g>
+
+        <polygon class="fill" points="11,11 20,11 26,30">
+            <animateTransform attributeName="transform"
+                type="rotate" 
+                from="2 10 20" to="8 20 50"
+                dur="4s" repeatCount="indefinite" />
+        </polygon>
+       
+    </svg>
+</div>
