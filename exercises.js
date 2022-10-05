@@ -18,22 +18,38 @@ console.log("-".repeat(30));
 // 3 Chessboard
 console.log("\n3: chessboard\n");
 
-
+let chessboard = "";
+for(let i = 0 ; i < 8 ; i++ ){
+    for(let j = 0 ; j < 8 ; j ++){
+        if ((i + j) % 2 === 0){ chessboard = chessboard.concat(" "); }
+        else{ chessboard = chessboard.concat("#"); }
+    }
+    chessboard = chessboard.concat("\n");
+}
+console.log(chessboard);
 
 console.log("-".repeat(30));
 // 4 shorten a string with ellipsis
 console.log("\n4: shorten string with (...) \n");
 const str = "The quick brown fow jumped over the lazy dog.";
-function a (str) {
+function fun(str) {
     let newStr = str.slice(0 , 10).concat("...");
     return newStr;
 }
-console.log(a(str));
+console.log(fun(str));
 
 console.log("-".repeat(30));
 // 5 convert camelCase to snake_case and vice-verse
 console.log("\n5: convert strings from camelCase to snake_case, and vice-versa \n");
 
+const snake = "this_string_is_snake_case";
+const camel = "thisStringIsCamelCase";
+
+function snakeToCamel(x){
+    return x.replaceAll("_" , "");
+}
+
+console.log(snakeToCamel(snake));
 
 console.log("-".repeat(30));
 // 6 slugify a string
