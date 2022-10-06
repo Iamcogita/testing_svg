@@ -32,11 +32,11 @@ console.log("-".repeat(30));
 // 4 shorten a string with ellipsis
 console.log("\n4: shorten string with (...) \n");
 const str = "The quick brown fow jumped over the lazy dog.";
-function fun(str) {
-    let newStr = str.slice(0 , 10).concat("...");
+function fun(str , val) {
+    let newStr = str.slice(0 , val).concat("...");
     return newStr;
 }
-console.log(fun(str));
+console.log(fun(str , 10 ));
 
 console.log("-".repeat(30));
 // 5 convert camelCase to snake_case and vice-verse
@@ -46,10 +46,15 @@ const snake = "this_string_is_snake_case";
 const camel = "thisStringIsCamelCase";
 
 function snakeToCamel(x){
-    return x.replaceAll("_" , "");
+    return x.replace(/[^a-zA-Z0-9]+(.)/g, (_, char) => char.toUpperCase());
 }
 
-console.log(snakeToCamel(snake));
+function camelToSnake(x){
+    return x.replace(/[A-Z]/g, char => `_${char.toLowerCase()}`);
+}
+
+console.log("result: " + snakeToCamel(snake));
+console.log("result: " + camelToSnake(camel));
 
 console.log("-".repeat(30));
 // 6 slugify a string
