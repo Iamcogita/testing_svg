@@ -77,12 +77,135 @@ console.log("-".repeat(30));
 console.log("\n7: parse a query string and return an object \n");
 let linkToParse = "mindera.com?a=1,2&b=3,4&c=four";
 
+function objectify(url) {
+    const [, queryString ] = url.split("?");
+    const queryParameters = queryString.split("&");
+    return queryParameters.reduce((queryStringObject, queryParameter) => {
+        const [name, value] = queryParameter.split("=");
+        if (value.includes(",")) {
+            const numbers = value.split(",")
+                  .map((number) => Number(number));
+                  queryStringObject[name] = numbers;
+        } else { queryStringObject[name] = value; }
+        return queryStringObject;
+    }, {});
+}
+
+console.log(objectify(linkToParse));
+
+console.log("-".repeat(30));
+
+// 8 reverse an array without ".reverse()"
+console.log("\n8: reverse an array \n");
+
+let arrayToReverse = [ 1 , 2 , 3 , 4 , 5 , 6 ];
+let arrayToReverse2 = [ "a" , "b" , "c" , "d" , "e" , "f"];
+
+function reverseArray(arr){
+    let newArr = [];
+    arr.forEach(e => {newArr.unshift(e)})
+    return newArr;
+}
+function reverseArrayInPlace(arr){
+    for(let i = 0 ; i< Math.floor(arr.length/2); i++){
+        [arr[i] , arr[arr.length - 1 - i]] = [arr[arr.length - 1 - i] , arr[i]] ;
+    }
+    return arr;
+}
+
+console.log(reverseArray(arrayToReverse));
+console.log(reverseArrayInPlace(arrayToReverse2));
+
+console.log("-".repeat(30));
+
+// 9 the sum of a range
+console.log("\n9: the sum of a range \n");
+
+function createArr(min, max){
+    if(min >= max){return console.log("bad move.")}
+    let newArr = [];
+    for(let i = min ; i <= max ; i++){
+        newArr.push(i); }
+    return newArr;
+}
+
+function sumElements(arr){
+    let result = 0;
+    for(let i = 0 ; i < arr.length ; i++){
+        result = result + arr[i];}
+    return result;
+}
+
+console.log(sumElements(createArr(1,10)));
+
+console.log("-".repeat(30));
+
+// 10 create arrayToList that builds up a list
+console.log("\n10: write a function arrayToList that builds up a list  \n");
+
+const thisArray = [1 , 2 , 3 , 4 , 5 , 6];
+
+function arrayToList([...arr], n = 0){
+    return (n < arr.length) ? {value: arr[n], rest: arrayToList(arr, n + 1)} : null;
+}
+
+function listToArray({...list}, arr = []){
+    arr.push(list.value);
+    return (list.rest != null) ? listToArray(list.rest, arr) : arr;
+}
+
+console.log(arrayToList(thisArray));
+console.log(listToArray(arrayToList(thisArray)));
+
+console.log("-".repeat(30));
+
+// 11 create a function that takes two values and compares if equal
+console.log("\n11: create a function that takes two values and compares if equal  \n");
+
+let obj = {here: {is: "an"}, object: 2};
+let counter = 0;
+
+function deepEqual (value1 , value2){
+    console.log("recursion times:" + counter++);
+    if (value1 === value2) {return true;}
+    if (value1 == null || typeof value1 != "object" || value2 == null || typeof value2 != "object"){return false;}
+    let keysIn1 = 0 , keysIn2 = 0;
+    for (var key in value1){
+        keysIn1 ++;
+    }
+    for (var key in value2){
+        keysIn2 ++;
+        if (!(key in value1) || !deepEqual(value1[key], value2[key]))
+        {return false;}
+    }
+    return keysIn1 == keysIn2;
+}
+
+console.log(deepEqual(obj , {here: {is: "an"}, object: 2} ));
+
+console.log("-".repeat(30));
+
+// 12 implement Quicksort algorithm
+console.log("\n12: implement Quicksort algorithm \n");
 
 
 
 console.log("-".repeat(30));
-// 8 hangman
-console.log("\n8: hangman game \n");
+
+// 13 implement Binary Search algorithm
+console.log("\n13: implement Binary Search algorithm \n");
+
+
+
+
+console.log("-".repeat(30));
+
+// 14 Write a function arrayToBinaryTree that takes an array and returns a binary tree
+//Also write a function add, that adds a node to the said binary tree
+console.log("\n14: create arrayToBinaryTree that takes an array and returns a binary tree");
+console.log("also write a function add, that adds a node to the said binary tree \n");
+
+
 
 
 console.log("-".repeat(30));
