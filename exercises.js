@@ -8,7 +8,7 @@ for(let i = 0 ; i < 6 ; i++){
 console.log("-".repeat(30));
 // 2 FizzBuzz
 console.log("\n2: fizzbuzz\n");
-for (let i = 1; i < 20; i++) {
+for (let i = 1; i < 101; i++) {
     if (i % 15 == 0) console.log("FizzBuzz");
     else if (i % 3 == 0) console.log("Fizz");
     else if (i % 5 == 0) console.log("Buzz");
@@ -31,7 +31,8 @@ console.log(chessboard);
 console.log("-".repeat(30));
 // 4 shorten a string with ellipsis
 console.log("\n4: shorten string with (...) \n");
-const str = "The quick brown fow jumped over the lazy dog.";
+
+const str = "The quick brown fox jumped over the lazy dog.";
 function fun(str , val) {
     let newStr = str.slice(0 , val).concat("...");
     return newStr;
@@ -60,7 +61,28 @@ console.log("-".repeat(30));
 // 6 slugify a string
 console.log("\n6: slugify a string \n");
 
+let slugString = "% /a String! $to ?sluggify#";
+
+function sluggify(str){
+    return str.toLowerCase().trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+console.log(sluggify(slugString));
 
 console.log("-".repeat(30));
-// 7 hangman
-console.log("\n7: hangman game \n");
+// 7 Given an URL, parse the query string such that it returns an object
+console.log("\n7: parse a query string and return an object \n");
+let linkToParse = "mindera.com?a=1,2&b=3,4&c=four";
+
+
+
+
+console.log("-".repeat(30));
+// 8 hangman
+console.log("\n8: hangman game \n");
+
+
+console.log("-".repeat(30));
