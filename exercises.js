@@ -169,16 +169,14 @@ function deepEqual (value1 , value2){
     console.log("recursion times:" + counter++);
     if (value1 === value2) {return true;}
     if (value1 == null || typeof value1 != "object" || value2 == null || typeof value2 != "object"){return false;}
-    let keysIn1 = 0 , keysIn2 = 0;
-    for (var key in value1){
-        keysIn1 ++;
-    }
-    for (var key in value2){
-        keysIn2 ++;
-        if (!(key in value1) || !deepEqual(value1[key], value2[key]))
+    let keysIn1 = Object.keys(value1);
+    let keysIn2 = Object.keys(value2);
+    if (keysIn1.length !== keysIn2.length) {return false};
+    for (const key of keysIn1){
+        if (!keysIn2.includes(key) || !deepEqual(value1[key], value2[key]))
         {return false;}
     }
-    return keysIn1 == keysIn2;
+    return true;
 }
 
 console.log(deepEqual(obj , {here: {is: "an"}, object: 2} ));
@@ -188,15 +186,47 @@ console.log("-".repeat(30));
 // 12 implement Quicksort algorithm
 console.log("\n12: implement Quicksort algorithm \n");
 
+function quickSort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+    const pivot = array[0];
+    const right = [];
+    const left = [];
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] > pivot) {
+            right.push(array[i]);
+        } else {
+            left.push(array[i]);
+        }
+    }
+    return [...quickSort(left), pivot, ...quickSort(right)];
+}
 
+console.log(quickSort([5,3,1,8,9]));
 
 console.log("-".repeat(30));
 
 // 13 implement Binary Search algorithm
 console.log("\n13: implement Binary Search algorithm \n");
 
+function binarySearch(arr, elem) {
+    if (arr.length === 0) {
+        return -1;
+    }
+    const middleIndex = Math.floor(arr.length / 2);
+    const middleValue = arr[middleIndex];
+    if (elem === middleValue) {
+        return elem;
+    }
 
+    if (elem > middleValue) {
+        return binarySearch(arr.slice(middleIndex+1), elem);
+    }
+    return binarySearch(arr.slice(0, middleIndex), elem);
+}
 
+console.log(binarySearch(quickSort([1,4,5,2]), 2));
 
 console.log("-".repeat(30));
 
@@ -205,7 +235,35 @@ console.log("-".repeat(30));
 console.log("\n14: create arrayToBinaryTree that takes an array and returns a binary tree");
 console.log("also write a function add, that adds a node to the said binary tree \n");
 
+function add(tree, value) {
+    if (tree === null) {
+        return {
+            value,
+            left: null,
+            right: null,
+        };
+    }
+    if (value < tree.value) {
+        return {
+            value: tree.value,
+            left: add(tree.left, value),
+            right: tree.right,
+        }
+    }
+    return {
+        value: tree.value,
+        left: tree.left,
+        right: add(tree.right, value),
+    }
+}
+function arrayToTree(array) {
+    let tree = null;
+    for (const elem of array) {
+        tree = add(tree, elem);
+    }
+    return tree;
+}
 
-
+console.log(arrayToTree([ 1 , 2 , 3 , "A" , "B" ]));
 
 console.log("-".repeat(30));
