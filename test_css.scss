@@ -1,0 +1,13 @@
+.svg-composition {
+    svg:hover {
+      .fill {
+        stroke: rgb(214, 18, 18);
+        stroke-width: 0.1;
+        fill: none;
+      }
+      
+      .stroke{
+        stroke-width: 0.1;
+      }
+    }
+  }
