@@ -1,0 +1,1 @@
+{"mappings":"AAAA;;;;AAGA","sources":["testing_svg/stylesheet.css"],"sourcesContent":["body{\n    background-color:  rgb(197, 155, 116);\n}\n.logo {\n    transform-origin: center;\n    position: center;\n    align-content: center;\n}"],"names":[],"version":3,"file":"index.7fbfa4e0.css.map","sourceRoot":"/__parcel_source_root/"}
