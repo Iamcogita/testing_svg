@@ -1,11 +1,27 @@
 body {
-  background-color: #c59b74;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-color: #8f775c;
+  background-image: repeating-linear-gradient(45deg, #0000 5px, #0b242d80 5px 10px, #d3807800 10px, #d3776f00 35px, #d3776f80 35px 40px, #0f2e3880 40px, #0b242d80 50px, #0b242d00 50px 60px, #d3776f80 60px, #91555080 70px, #f7b35580 70px 80px, #f7b35500 80px 90px, #d3776f80 90px 110px, #d3776f00 110px 120px, #0b242d80 120px 140px), repeating-linear-gradient(135deg, #0000 5px, #0b242d80 5px 10px, #dd786e00 10px, #d3776f00 35px, #d3776f80 35px 40px, #102c3780 40px, #0b242d80 50px, #0b242d00 50px 60px, #d3776f80 60px, #76464180 70px, #f7b35580 70px 80px, #ffc47000 80px, #f7b35500 90px, #d3776f80 90px 110px, #c4756e00 110px, #d3776f00 140px, #0b242d80 140px 160px);
 }
 
 .logo {
+  fill: #000;
   transform-origin: center;
-  position: center;
-  align-content: center;
+}
+
+.logo:hover {
+  fill: #211220;
+  filter: drop-shadow(0 10px 4px #0003);
+  transition: all .5s;
+  scale: 102%;
+}
+
+.logo:active {
+  fill: #060606;
+  filter: drop-shadow(0 4px #0000004d);
+  transition: all 50ms ease-out;
+  scale: 98%;
 }
 
 /*# sourceMappingURL=index.7fbfa4e0.css.map */

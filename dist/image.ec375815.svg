@@ -1,7 +1,5 @@
-<svg viewBox="0 100 590 554">
-        <g class="logo" style="filter: drop-shadow(0 30px 2px #a98d6c)">
-            <animateTransform attributeName="transform" begin="1s" type="scale" dur="0.2s" from="1" to=".8"></animateTransform>
-            <animateTransform attributeName="transform" begin="1.2s" type="scale" dur="0.1s" from=".8" to="1"></animateTransform>
+<svg viewBox="0 100 590 554" class="logo">
+        <g>
 			<path d="M298.2,455.8c-3.2-1.5-6.4-2.6-9.1-4.3c-64.5-39.7-129-79.5-193.5-119.3c-27.6-17-55.3-34.1-82.9-51.1
 			c-7.5-4.6-7.5-8.4,0.1-12.9c91.1-53.9,182.3-107.8,273.3-161.9c8.8-5.2,16.4-5.2,25.1,0c90.3,54.4,180.7,108.6,271,162.8
 			c8.2,4.9,8.2,9-0.1,14.1C490.5,339.5,398.8,395.7,307,451.8C304.4,453.4,301.4,454.4,298.2,455.8z M435.3,344.5

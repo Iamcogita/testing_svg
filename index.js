@@ -1,0 +1,1 @@
+const bodyVar = document.getElementsByTagName("body")[0];
