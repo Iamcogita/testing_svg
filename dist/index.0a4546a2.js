@@ -532,7 +532,7 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"bCbCR":[function(require,module,exports) {
-const bodyVar = document.getElementsByTagName("body")[0];
+const mainVar = document.getElementsByTagName("main")[0];
 
 },{}]},["8y0yT","bCbCR"], "bCbCR", "parcelRequire94c2")
 

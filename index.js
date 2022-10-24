@@ -1,1 +1,1 @@
-const bodyVar = document.getElementsByTagName("body")[0];
+const mainVar = document.getElementsByTagName("main")[0];
