@@ -17,6 +17,23 @@
     hsla(5, 42%, 60%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px
     );
 }
+button {
+    margin: 5px;
+    padding: 5px;
+    height: 30px;
+    min-width: 80px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+}
+button:active {
+    font-weight: 300;
+    height: 30px;
+    border: rgb(20, 20, 20);
+    border-width: 2px;
+    border-style: solid;
+}
 .titleH1 {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -41,7 +58,8 @@
     -ms-user-select: none;
     user-select: none;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: medium;
+    font-size:large;
+    font-weight: bolder;
     text-indent: 8px;
     color:rgba(0, 0, 0, 0.7);
 }
@@ -56,7 +74,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: small;
     color:rgba(0, 0, 0, 0.7);
-    padding: 10px;
+
 }
 .mainClass{
     display: flex;
@@ -65,18 +83,16 @@
 }
 .gridcontainer{
     display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-rows: 50% 50%;
+    justify-items: center;
+    grid-template-columns: 22% 80%;
 }
-.buttongrid{
-    display: grid;
-    height: 800px;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 25% 25% 25% 25%;
+.buttoncontainer{
+    display: flex;
+    justify-content: space-evenly;
 }
 .sidebar{
-    width: 200px;
-    height: 800px;
+    width: 180px;
+    height: 460px;
     margin: 10px;
     padding: 5px;   
     border-radius: 8px;
@@ -86,6 +102,7 @@
 }
 .divs{
     width: 200px;
+    height: 200px;
     margin: 10px;
     padding: 5px;   
     border-radius: 8px;
@@ -93,59 +110,67 @@
     background-color: aliceblue;
     filter: drop-shadow( 0px 4px 0px rgba(0, 0, 0, 0.3));
 }
-.logo1, .logo2, .logo3, .logo4 {
+.commentdiv{
+    max-height: max-content;
+    max-width: fit-content;
+    margin: 10px;
+    padding: 20px;  
+    border-radius: 8px;
+    background-image: url(data:image/png;base64,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);
+    background-color: aliceblue;
+    filter: drop-shadow( 0px 4px 0px rgba(0, 0, 0, 0.3));
+}
+.svg1, .svg2, .svg3 {
     fill:rgb(0, 0, 0);
     transform-origin: center;
     transition: 200ms;
 }
-.logo1:hover {
-    scale: 102%;
+.svg1:hover {
+    scale: 104%;
     transition: 500ms;
-    fill: rgb(27, 54, 208);
+    fill: rgb(0, 38, 255);
     filter: drop-shadow( 0px 10px 4px rgba(0, 0, 0, 0.2));
 }
-.logo1:active {
+.svg1:active {
     scale: 97%;
     transition: 50ms;
     transition-timing-function: ease-out;
-    fill:rgb(6, 6, 6);
-    filter: drop-shadow( 0px 4px 0px rgba(0, 0, 0, 0.3));
+    fill:rgb(90, 0, 0);
+    filter: drop-shadow( 0px 2px 0px rgba(0, 0, 0, 0.4));
 }
-.logo2:hover {
-    scale: 101%;
-    transition: 50ms;
-    fill: rgb(39, 53, 70);
-    filter: drop-shadow( -4px 8px 4px rgba(0, 187, 255, 0.5));
-}
-.logo2:active {
-    scale: 96%;
-    transition: 200ms;
-    transition-timing-function: ease-in;
-    fill:rgb(0, 16, 50);
-    filter: drop-shadow( 0px 2px 2px rgba(0, 0, 0, 0.2));
-}
-.logo3:hover {
+.svg2:hover {
     transition-delay: 100ms;
     fill: rgb(39, 53, 70);
     filter: drop-shadow( 0px 0px -4px rgba(255, 230, 0, 0.5));
 }
-.logo3:active {
+.svg2:active {
     scale: 94%;
     transition: 0ms;
-    fill:rgb(0, 0, 0);
-    filter: blur(4px);
+    fill:rgba(0, 0, 0, 0.8);
+    filter: blur(6px);
 }
-.logo4:hover {
+.svg2special {
+    display: none;
+    scale: 100%;
+    fill: rgba(0, 0, 0, 1);
+}
+.svg2special:hover {
+    display: block;
+    scale: 200%;
+    transition: 400ms;
+    fill: rgba(0, 0, 0, 0);
+}
+.svg3:hover {
     scale: 101%;
     stroke: aqua;
     transition: 300ms;
     fill: rgb(31, 73, 79);
-    filter: drop-shadow( 0px 10px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow( 0px 60px 6px rgba(0, 0, 0, 0.2));
 }
-.logo4:active {
+.svg3:active {
     scale: 90%;
     transition: 200ms;
     transition-timing-function: ease-out;
     fill:rgb(0, 0, 0);
-    filter: drop-shadow( 0px 2px 0px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow( 0px 2px 0px rgba(0, 0, 0, 0.6));
 }
