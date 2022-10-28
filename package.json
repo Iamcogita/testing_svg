@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Iamcogita/testing_svg/issues"
   },
-  "homepage": "https://github.com/Iamcogita/testing_svg#readme"
+  "homepage": "https://github.com/Iamcogita/testing_svg#readme",
+  "dependencies": {
+    "dom-react": "^2.2.1",
+    "prettierr": "^1.15.3-dev",
+    "react": "^18.2.0"
+  }
 }
