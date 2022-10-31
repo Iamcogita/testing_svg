@@ -148,7 +148,11 @@ li{
         min-width: 100%;
         font-size: 2vw;
     }
+    .commentClass{
+        margin: 10px;
+    }
 }
+
 @media only screen and (max-width: 600px){
     .titleH1, h2{
         font-size: 3vw;
