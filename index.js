@@ -52,7 +52,7 @@ button05.addEventListener("click" , () => {
     let animationtime = {
         duration: 500,
         iterations: 1
-    }
+    };
     let svg01 = document.getElementsByTagName("svg")[0];
     let svg02 = document.getElementsByTagName("svg")[1]; 
     let svg03 = document.getElementsByTagName("svg")[2];
@@ -64,9 +64,18 @@ button05.addEventListener("click" , () => {
 
 const button06 = document.getElementById("b06");
 button06.addEventListener("click" , () => {
-   
-
-});
+    let rotateAnimation = [
+        {transform : "rotate(360deg)"}
+    ];
+    let animationtime = {
+        duration: 800,
+        iterations: 1
+    };
+    divcss01.animate(rotateAnimation,animationtime);
+    divcss02.animate(rotateAnimation,animationtime);
+    divcss03.animate(rotateAnimation,animationtime);
+    }
+);
 
 const button07 = document.getElementById("b07");
 button07.addEventListener("click" , () => {

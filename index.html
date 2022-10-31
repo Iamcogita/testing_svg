@@ -5,11 +5,13 @@
     <link rel="stylesheet" href="stylesheet.css" media="all">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type = "module" src="index.js"></script>
-	<!-- <script type = "module" src="index.jsx"></script> -->
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <title>David's mindswap page</title>
 	<link rel="icon" href="assets/favicon.png" type="png" sizes="any">
 </head>
-<body class="bodyBackground">
+<body>
 	<header class="mainClass">
 		<h1 class="titleH1">Creating buttons with SVG and playing around with CSS</h1>
 	</header>
@@ -22,7 +24,7 @@
 				<ul><button id="b03"> order </button></ul>
 				<ul><button id="b04"> shadow </button></ul>
 				<ul><button id="b05"> jump </button></ul>
-				<ul><button id="b06"> try </button></ul>
+				<ul><button id="b06"> rotate </button></ul>
 				<ul><button id="b07"> reset </button></ul>
 			</div>
 		</div>
@@ -152,12 +154,14 @@
 					<li>event listeners</li>
 					<li>flex and grid</li>
 					<li>media queries</li>
-					<li>forms with react</li>
+					<li>react and DOM</li>
 					<li>other stuff</li>
 			</span>
 		</div>
 		</article>	
 	</div>
 </main>
+<script src="index.jsx" type="text/babel"></script>
+<div id="reactDiv" class="commentClass"></div>
 </body>
 </html>
