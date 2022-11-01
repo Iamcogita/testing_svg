@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Iamcogita/testing_svg#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
     "dom-react": "^2.2.1",
     "prettierr": "^1.15.3-dev",
     "react": "^18.2.0"

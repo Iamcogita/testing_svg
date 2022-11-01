@@ -2,15 +2,14 @@
 const divcss01 = document.getElementsByClassName("divs")[0];
 const divcss02 = document.getElementsByClassName("divs")[1];
 const divcss03 = document.getElementsByClassName("divs")[2];
+const divArr = [divcss01,divcss02,divcss03];
 
 let getRandomInt = () => Math.floor(Math.random() * (255 - 80 ) + 80);
 let newBgColor = () => "rgb(".concat(getRandomInt()).concat("+"+getRandomInt()).concat("+"+getRandomInt()+")");
 const button01 = document.getElementById("b01");
 button01.addEventListener("click" , () => {
     let newColor = newBgColor();
-    divcss01.style.backgroundColor = newColor;
-    divcss02.style.backgroundColor = newColor;
-    divcss03.style.backgroundColor = newColor;
+    divArr.forEach(e=>e.style.backgroundColor = newColor);
 });
 
 let getRandomRadius = () => Math.floor(Math.random() * 60);
@@ -18,9 +17,7 @@ let newRadius = () => getRandomRadius()+"%" ;
 const button02 = document.getElementById("b02");
 button02.addEventListener("click" , () => {
     let radius = newRadius();
-    divcss01.style.borderRadius = radius ; 
-    divcss02.style.borderRadius = radius ;  
-    divcss03.style.borderRadius = radius ;   
+    divArr.forEach(e=>e.style.borderRadius = radius);
 });
 
 const svgDivContainer = document.getElementsByClassName("buttoncontainer")[0];
@@ -37,9 +34,7 @@ let randomShadow = () => `drop-shadow(${randomPixels2()} ${randomPixels2()} ${ra
 const button04 = document.getElementById("b04");
 button04.addEventListener("click" , () => {
     let newShadow = randomShadow();
-    divcss01.style.setProperty("filter", newShadow);
-    divcss02.style.setProperty("filter", newShadow);
-    divcss03.style.setProperty("filter", newShadow);
+    divArr.forEach(e=>e.style.setProperty("filter", newShadow));
 });
 
 const button05 = document.getElementById("b05");
@@ -53,12 +48,7 @@ button05.addEventListener("click" , () => {
         duration: 500,
         iterations: 1
     };
-    let svg01 = document.getElementsByTagName("svg")[0];
-    let svg02 = document.getElementsByTagName("svg")[1]; 
-    let svg03 = document.getElementsByTagName("svg")[2];
-    svg01.animate(jumpAnimation,animationtime);
-    svg02.animate(jumpAnimation,animationtime);
-    svg03.animate(jumpAnimation,animationtime);
+    divArr.forEach(e=>e.animate(jumpAnimation,animationtime));
     }
 );
 
@@ -71,9 +61,7 @@ button06.addEventListener("click" , () => {
         duration: 800,
         iterations: 1
     };
-    divcss01.animate(rotateAnimation,animationtime);
-    divcss02.animate(rotateAnimation,animationtime);
-    divcss03.animate(rotateAnimation,animationtime);
+    divArr.forEach(e=>e.animate(rotateAnimation,animationtime));
     }
 );
 
@@ -81,8 +69,6 @@ const button07 = document.getElementById("b07");
 button07.addEventListener("click" , () => {
     if(divcss01.getAttribute("style") || svgDivContainer.getAttribute("style") ){
         svgDivContainer.removeAttribute("style");
-        divcss01.removeAttribute("style");
-        divcss02.removeAttribute("style");
-        divcss03.removeAttribute("style");
+        divArr.forEach(e => e.removeAttribute("style"));
     }
 });

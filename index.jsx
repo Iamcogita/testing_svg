@@ -1,5 +1,5 @@
 const commentForm = (
-    <div>
+    <div><h3>LEAVE A COMMENT</h3><hr/>
         <form>
             <label htmlFor="commentName">Name:</label><br/>
             <input type="text" id="commentName" className="formNameClass"/><br/>
