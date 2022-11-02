@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/Iamcogita/testing_svg.git"
   },
-  "author": "",
+  "author": "cogita",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Iamcogita/testing_svg/issues"
@@ -21,11 +21,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^3.1.2",
     "dom-react": "^2.2.1",
-    "prettierr": "^1.15.3-dev",
     "react": "^18.2.0"
   },
-  "devDependencies": {
-    "@types/cors": "^2.8.12",
-    "@types/express": "^4.17.14"
-  }
+  "devDependencies": {}
 }
