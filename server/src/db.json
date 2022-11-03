@@ -1,1 +1,1 @@
-{"comments":[{"id":"1","username":"John Doe","comment":"Hello world!"},{"id":"2","username":"Jane Doe","comment":"Second comment"},{"username":"dave","comment":"hello!!\n","id":3}]}
+{"comments":[{"username":"David","comment":"Testing react.DOM, express server and json local DB ","id":1},{"username":"David","comment":"Had help from my friend Alecks <3","id":2}]}

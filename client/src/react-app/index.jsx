@@ -41,27 +41,28 @@ const MyCommentSection = () => {
         form.reset();
     };
 
-    const renderedComments = comments.map((e, index) => <div key={index} style={{
-        paddingTop: "10px"
-    }}><div>{e.username}</div><div>{e.comment}</div><hr /></div>);
-
+    const renderedComments = comments.map((e, index) => <div key={index}>
+        <div>{e.username}{" says :"}</div><div style={{paddingTop:"10px"}}>{"\""}{e.comment}{"\""}</div><hr/></div>);
     return (
-        <div id="commentDivId"><h3>LEAVE A COMMENT</h3><hr />
+        <>
+        <div id="commentDivId"><h3>LEAVE A COMMENT</h3><hr/>
             <form id="formID" onSubmit={handleSubmit}>
-                <label htmlFor="commentName">Name:</label><br />
-                <input type="text" id="commentName" className="formNameClass" placeholder="your name" name="username" /><br />
-                <label htmlFor="textAreaId">Comment:</label><br />
-                <textarea id="textAreaId" className="commentArea" placeholder="write here" name="comment"></textarea><br />
+                <label htmlFor="commentName">Name:</label><br/>
+                <input type="text" id="commentName" className="formNameClass" placeholder="your name" name="username"/><br/>
+                <label htmlFor="textAreaId">Comment:</label><br/>
+                <textarea id="textAreaId" className="commentArea" placeholder="write here" name="comment"></textarea><br/>
                 <button id="submitButton" type="submit"> Submit </button>
             </form>
-            <div id="databaseComments">
+        </div>
+            <div id="databaseComments" className='reactComments'>
+                <h3><p>COMMENTS:</p></h3>
                 {renderedComments}
             </div>
-        </div>
+        </>
     )
 }
 
 
 const rootNode = document.getElementById("reactDiv");
 const root = ReactDOM.createRoot(rootNode)
-root.render(<MyCommentSection />);
+root.render(<MyCommentSection/>);

@@ -12,4 +12,3 @@ export interface PostComment {
     username: string;
     comment: string;
 }
-
