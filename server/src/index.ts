@@ -55,7 +55,7 @@ app.post("/comments", (request, response) => {
     fs.writeFileSync(dbPath, JSON.stringify(database));
 
     response.setHeader("Content-Type", "application/json");
-    response.statusCode = 201; //http created
+    response.statusCode = 201;
     response.send(comment);
 })
 
