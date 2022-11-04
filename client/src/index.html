@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="./styles/stylesheet.css" media="all">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script type="module" src="index.js"></script>
+	<script src="./react/index.jsx" type="module"></script>
 	<title>David's mindswap page</title>
 	<link rel="icon" href="./assets/favicon.png" type="png" sizes="any">
 </head>
@@ -19,7 +18,7 @@
 			<div class="sidebar">
 				<h2>Try these buttons:</h2>
 				<div class="textspan">
-					<ul><button id="b01"> color </button></ul>
+					<ul><button id="b01" onclick=""> color </button></ul>
 					<ul><button id="b02"> radius </button></ul>
 					<ul><button id="b03"> order </button></ul>
 					<ul><button id="b04"> shadow </button></ul>
@@ -163,6 +162,5 @@
 		</div>
 	</main>
 	<div id="reactDiv" class="commentClass"></div>
-	<script src="./react-app/index.jsx" type="module"></script>
 </body>
 </html>
