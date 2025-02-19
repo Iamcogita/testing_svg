@@ -1,4 +1,5 @@
 # testing_svg
+<img src="https://github.com/user-attachments/assets/27883872-bbc4-4c05-9f1f-e4ce277c8e8b" width="600">
 
 ## Personal page with:
 <ul>
