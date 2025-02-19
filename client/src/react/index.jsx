@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom/client';
-import { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import YourSVG from '../assets/andro.svg';
+import styles from '../styles/stylesheet.css'
 
 const apiURL = "http://localhost:3000/comments";
 
@@ -41,10 +43,11 @@ const MyCommentSection = () => {
 
     const renderedComments = comments.map((e, index) => 
     <div key={index}>
+        <hr/>
         <div>{e.username}{" says :"}</div>
         <div style={{paddingTop:"10px"}}>
             {"\""}{e.comment}{"\""}</div>
-            <hr/>
+            
     </div>
     );
 
@@ -88,12 +91,19 @@ button02.addEventListener("click" , () => {
     divArr.forEach(e=>e.style.borderRadius = radius);
 });
 
-const svgDivContainer = document.getElementsByClassName("buttoncontainer")[0];
-const button03 = document.getElementById("b03");
-button03.addEventListener("click" , () => {
+let orderCounter = 0;
+function orderDivs(){
+    orderCounter ++;
     let firstDiv = document.getElementsByClassName("divs")[0];
     firstDiv.remove();
     svgDivContainer.append(firstDiv);
+}
+const svgDivContainer = document.getElementsByClassName("buttoncontainer")[0];
+const button03 = document.getElementById("b03");
+button03.addEventListener("click" , () => {
+    orderDivs();
+    if(orderCounter == 3)
+        {orderCounter = 0}
 });
 
 let randomPixels1 = () => Math.floor(Math.random()*20)+"px";
@@ -126,7 +136,7 @@ button06.addEventListener("click" , () => {
         {transform : "rotate(360deg)"}
     ];
     let animationtime = {
-        duration: 800,
+        duration: 700,
         iterations: 1
     };
     divArr.forEach(e=>e.animate(rotateAnimation,animationtime));
@@ -139,7 +149,93 @@ button07.addEventListener("click" , () => {
         svgDivContainer.removeAttribute("style");
         divArr.forEach(e => e.removeAttribute("style"));
     }
+    if(orderCounter != 0){
+        orderDivs();
+        if(orderCounter == 2){
+            orderDivs();
+        }
+        orderCounter = 0;
+    }  
 });
+
+function InteractiveSVG() {
+    const [isMouseControlled, setMouseControlled] = useState(true);
+    const svgRef = useRef(null);
+    const maskRefs = useRef([]);
+  
+    useEffect(() => {
+      if (!svgRef.current || maskRefs.current.length === 0) return;
+      
+      const getRandomColor = () => {
+        return `rgb(${Math.floor(Math.random() * 256)},
+        ${Math.floor(Math.random() * 256)},
+        ${Math.floor(Math.random() * 256)})`;
+      };
+
+      if (!isMouseControlled) {
+        const intervalId = setInterval(() => {
+          const rect = svgRef.current.getBoundingClientRect();
+          const randomY = Math.random() * rect.height;
+          const randomX = Math.random() * rect.width;
+          const color = getRandomColor(); 
+  
+          maskRefs.current.forEach((mask, index) => {
+            if (mask) {
+              const transitionTime = `${(0.25 * index + 1) * 350}ms`;
+              const userAgent = window.navigator.userAgent;
+              const isSafari = userAgent.indexOf("Safari") > -1 && !(userAgent.indexOf("Chrome") > -1 || userAgent.indexOf("Chromium") > -1);
+              mask.style.transition = isSafari 
+                ? `background-color linear ${transitionTime}`
+                : `transform ease-out ${transitionTime}, background-color linear ${transitionTime}`;
+              mask.style.transform = `translate(${randomX}px, ${randomY}px)`;
+              mask.style.background = color;
+            }
+          });
+        }, 4000);
+  
+        return () => clearInterval(intervalId);
+      }
+    }, [isMouseControlled]);
+  
+    useEffect(() => {
+      if (!svgRef.current || maskRefs.current.length === 0) return;
+  
+      const handleMouseMove = (event) => {
+        setMouseControlled(false);
+        const rect = svgRef.current.getBoundingClientRect();
+        const x = Math.min(Math.max(event.pageX - rect.left, 0), rect.width);
+        const y = Math.min(Math.max(event.pageY - rect.top, 0), rect.height);
+        const color = getRandomColor();
+  
+        maskRefs.current.forEach(mask => {
+          if (mask) {
+            mask.style.transform = `translate(${x}px, ${y}px)`;
+            mask.style.background = color;
+          }
+        });
+      };
+  
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
+  
+    return (
+      <div className={styles.container} ref={svgRef}>
+        <YourSVG className={styles.svg} />
+        {[0, 1, 2].map((_, index) => (
+          <div 
+            key={index} 
+            className={`${styles.mask} ${styles[`mask${index + 1}`]}`} 
+            ref={el => { maskRefs.current[index] = el; }}
+          />
+        ))}
+      </div>
+    );
+};
+
+const introRoot = document.getElementById("intro");
+const intro = ReactDOM.createRoot(introRoot);
+intro.render(<InteractiveSVG/>);
 
 const rootNode = document.getElementById("reactDiv");
 const root = ReactDOM.createRoot(rootNode)

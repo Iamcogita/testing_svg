@@ -7,6 +7,8 @@ import path from 'path';
 
 const dbPath = path.join(__dirname, "./db.json");
 
+const PORT = 3000;
+
 function readDatabase(): Database {
     const buffer = fs.readFileSync(dbPath); 
     const json = JSON.parse(buffer.toString());
@@ -19,11 +21,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded( {extended: true}));
 
-app.get('/', (req,res) => {
+app.get('/', (_req,res) => {
     res.json({status: "ok"})
 })
 
-app.get("/comments", (request, response) => {
+app.get("/comments", (_request, response) => {
     const database = readDatabase();
 
     response.setHeader("Content-Type", "application/json");
@@ -59,6 +61,6 @@ app.post("/comments", (request, response) => {
     response.send(comment);
 })
 
-app.listen(3000, () => {
-    console.log("Listening on port 3000");
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
 });
