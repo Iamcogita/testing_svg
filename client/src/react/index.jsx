@@ -186,7 +186,7 @@ const InteractiveSVG = () => {
 
   return (
     <div className='svg'>
-      <h1>MOVEMENT CHANGES THE SGV COLOR FILL</h1>
+      <h1>MOVEMENT CHANGES THE SVG COLOR FILL</h1>
       <svg 
         ref={svgRef} 
         viewBox="140 20 600 600" 
