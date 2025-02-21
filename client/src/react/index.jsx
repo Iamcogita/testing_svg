@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import React, { useState, useRef, useEffect } from 'react';
-import YourSVG from '../assets/andro.svg';
-import styles from '../styles/stylesheet.css'
+import styles from '../styles/stylesheet.css'; 
 
 const apiURL = "http://localhost:3000/comments";
 
@@ -158,85 +157,65 @@ button07.addEventListener("click" , () => {
     }  
 });
 
-function InteractiveSVG() {
-    const [isMouseControlled, setMouseControlled] = useState(true);
-    const svgRef = useRef(null);
-    const maskRefs = useRef([]);
-  
-    useEffect(() => {
-      if (!svgRef.current || maskRefs.current.length === 0) return;
+const InteractiveSVG = () => {
+  const [color, setColor] = useState("#000"); // Default color
+  const svgRef = useRef(null);
+
+  const getRandomColor = () => {
+    return `rgb(${Math.floor(Math.random() * 255)},
+      ${Math.floor(Math.random() * 255)},
+      ${Math.floor(Math.random() * 255)},
+      0.8)`;
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      if (!svgRef.current) return;
       
-      const getRandomColor = () => {
-        return `rgb(${Math.floor(Math.random() * 256)},
-        ${Math.floor(Math.random() * 256)},
-        ${Math.floor(Math.random() * 256)})`;
-      };
+      const rect = svgRef.current.getBoundingClientRect();
+      const x = Math.min(Math.max(event.pageX - rect.left, 0), rect.width);
+      const y = Math.min(Math.max(event.pageY - rect.top, 0), rect.height);
 
-      if (!isMouseControlled) {
-        const intervalId = setInterval(() => {
-          const rect = svgRef.current.getBoundingClientRect();
-          const randomY = Math.random() * rect.height;
-          const randomX = Math.random() * rect.width;
-          const color = getRandomColor(); 
-  
-          maskRefs.current.forEach((mask, index) => {
-            if (mask) {
-              const transitionTime = `${(0.25 * index + 1) * 350}ms`;
-              const userAgent = window.navigator.userAgent;
-              const isSafari = userAgent.indexOf("Safari") > -1 && !(userAgent.indexOf("Chrome") > -1 || userAgent.indexOf("Chromium") > -1);
-              mask.style.transition = isSafari 
-                ? `background-color linear ${transitionTime}`
-                : `transform ease-out ${transitionTime}, background-color linear ${transitionTime}`;
-              mask.style.transform = `translate(${randomX}px, ${randomY}px)`;
-              mask.style.background = color;
-            }
-          });
-        }, 4000);
-  
-        return () => clearInterval(intervalId);
-      }
-    }, [isMouseControlled]);
-  
-    useEffect(() => {
-      if (!svgRef.current || maskRefs.current.length === 0) return;
-  
-      const handleMouseMove = (event) => {
-        setMouseControlled(false);
-        const rect = svgRef.current.getBoundingClientRect();
-        const x = Math.min(Math.max(event.pageX - rect.left, 0), rect.width);
-        const y = Math.min(Math.max(event.pageY - rect.top, 0), rect.height);
-        const color = getRandomColor();
-  
-        maskRefs.current.forEach(mask => {
-          if (mask) {
-            mask.style.transform = `translate(${x}px, ${y}px)`;
-            mask.style.background = color;
-          }
-        });
-      };
-  
-      window.addEventListener('mousemove', handleMouseMove);
-      return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
-  
-    return (
-      <div className={styles.container} ref={svgRef}>
-        <YourSVG className={styles.svg} />
-        {[0, 1, 2].map((_, index) => (
-          <div 
-            key={index} 
-            className={`${styles.mask} ${styles[`mask${index + 1}`]}`} 
-            ref={el => { maskRefs.current[index] = el; }}
-          />
-        ))}
-      </div>
-    );
+      const color = getRandomColor();
+      setColor(color);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  return (
+    <div className='svg'>
+      <h1>MOVEMENT CHANGES THE SGV COLOR FILL</h1>
+      <svg 
+        ref={svgRef} 
+        viewBox="140 20 600 600" 
+        xmlns="http://www.w3.org/2000/svg"
+        className={styles.svg}
+      >
+        <path d="M435,81c10,0,20,0,30,0c2.1,0.5,4.1,1.1,6.2,1.3c39.1,4,73.9,18.5,104.1,43.4c41.9,34.6,66,79,71.8,133.1
+							c3,28.1,0.4,55.8-8.6,82.6C606.6,437,509.5,493.6,411.4,474c-29.9-6-57.3-17.9-81.4-36.7c-44.9-35-71-80.8-77.1-137.6
+							c-2.7-25.2-1-50.2,6.2-74.6c13.4-45.6,39.5-82.3,78.7-109.4c23.9-16.5,50.3-27.3,79.1-31.9C422.9,82.9,429,82,435,81z M467.9,336.4
+							c0.3-10.8-2-32.3-4.2-46.8c-1.2-7.7-4-15.8-7.2-23c-1.8-4.2-6.6-3.8-8.8,0.1c-2.3,4.3-4.5,9.7-6.1,15.6c-1.7,6.3-4.6,24.3-5.4,38.6
+							c-1.1,20.8,2.9,57.1,4.1,62.1c1.2,5,3.2,13.1,8.3,18.1c2.4,2.4,3.7,2.4,5.8,0.1s7.1-13.9,8.3-19.9S467.6,348.4,467.9,336.4z
+							M311.7,219.5c0.6,4.4,2.7,6.8,8.4,7.7c5.9,1,11.4,1.6,16.5,2.1c2.3,5.9,23.7,7.4,33.3,8.5c9.5,1.1,20.9,4,29.7,8.1
+							c5.1,2.3,10,5,15.4,7.8c-9.4-13.9-13.6-29-13.1-45.2c-36.5,0-72.6,0-109.4,0C297.7,215.4,304.9,217.1,311.7,219.5z M501.8,208.2
+							c-0.3,16.7-3.8,32-13.6,45.6c5.5-2.8,10.4-5.6,15.5-7.9c14-6.2,29.3-5.4,44-7.9c6-1,13-0.1,16.5-7.1c0.2-0.5,7.5-1.1,10-1.9
+							c6.4-1.9,14.8-0.1,17.4-9.2c0.1-0.4,1.1-0.5,1.7-0.7c2.8-1,5.7-1.7,8.2-3.1c3.2-1.8,8.3-5.6,9.1-7.7
+							C574.9,208.2,538.1,208.2,501.8,208.2z M431,212.3c-1.5,11.5,10.1,20.6,20,20.9c10.8,0.3,21.8-8.2,21.6-21.6
+							c-0.1-11.3-9.3-20.5-20.6-20.6C440.5,190.9,429.9,200.3,431,212.3z M426.8,286.3c-12.6,10.6-22.9,36.5-19.9,50
+							c2.9-3.2,5.7-5.5,7.5-8.4c6.6-10.2,12.1-26.6,12.8-30.5S428.3,289.5,426.8,286.3z M498.4,334.8c-2.1-18.3-8-34.4-20.6-48.1
+							C471.6,295.6,487.4,332.9,498.4,334.8z" fill={color} />
+      </svg>
+    </div>
+  );
 };
-
-const introRoot = document.getElementById("intro");
-const intro = ReactDOM.createRoot(introRoot);
-intro.render(<InteractiveSVG/>);
 
 const rootNode = document.getElementById("reactDiv");
 const root = ReactDOM.createRoot(rootNode)
-root.render(<MyCommentSection/>);
+root.render(
+  <>
+    <InteractiveSVG/>
+    <MyCommentSection/>
+  </>
+);
